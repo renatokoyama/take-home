@@ -1,15 +1,27 @@
 module.exports = {
   extends: [
-    'airbnb-typescript/base',
+    'airbnb-typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:promise/recommended',
     'prettier',
     'prettier/@typescript-eslint',
   ],
-  plugins: ['promise', 'prettier'],
+  plugins: ['promise', 'prettier', '@typescript-eslint'],
   parserOptions: {
     project: './tsconfig.json',
   },
+  settings: {
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
     'max-len': [
       'error',
@@ -63,5 +75,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-plusplus': 'off',
     'no-param-reassign': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
 }
