@@ -7,9 +7,14 @@ import {
   TypographyProps,
   color as ssColor,
   ColorProps,
+  position,
+  PositionProps,
 } from 'src/lib/theme'
 
-export type TextProps = SpaceProps & TypographyProps & ColorProps
+export type TextProps = SpaceProps &
+  TypographyProps &
+  ColorProps &
+  PositionProps
 
 const Text = styled.p<TextProps>`
   ${({ theme }) => css`
@@ -18,6 +23,7 @@ const Text = styled.p<TextProps>`
   ${space};
   ${typography};
   ${ssColor};
+  ${position};
 `
 
 export default Text

@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react'
 import React from 'react'
 import { Task, TaskPriority } from 'src/interfaces/task'
+import Box from '../Box'
 import TaskCard, { TaskCardProps } from './index'
 
 const task: Task = {
@@ -9,11 +10,15 @@ const task: Task = {
 }
 
 const Template: Story<TaskCardProps> = ({ ...args }) => {
-  return <TaskCard {...args} task={task} />
+  return (
+    <Box marginBottom='100px'>
+      <TaskCard {...args} task={task} />
+    </Box>
+  )
 }
 
 export default {
-  title: 'Atoms/TaskCard',
+  title: 'Molecules/TaskCard',
   component: Template,
   args: {
     width: '300px',
