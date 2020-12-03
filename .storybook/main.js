@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -10,7 +12,6 @@ module.exports = {
       ...config.resolve,
       alias: {
         lib: path.resolve(__dirname, '../lib'),
-        utils: path.resolve(__dirname, '../utils'),
         components: path.resolve(__dirname, '../components'),
       },
     }

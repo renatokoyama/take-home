@@ -1,5 +1,4 @@
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
-import React from 'styled-components/node_modules/@types/react'
 import { theme } from './theme'
 import { globalReset } from './globalReset'
 import { globalTypography } from './globalTypography'
