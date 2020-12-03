@@ -9,6 +9,9 @@ export interface Theme {
     primary: string[]
     secondary: string[]
     greyscale: string[]
+    success: string
+    warning: string
+    danger: string
   }
   fonts: {
     primary: string
@@ -55,6 +58,9 @@ export const theme: Theme = {
       '#E2E2E2',
       '#FFFFFF',
     ],
+    success: '#60BE4B',
+    warning: '#F0D406',
+    danger: '#EB5B42',
   },
   fonts: {
     primary:
