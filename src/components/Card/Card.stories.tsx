@@ -26,6 +26,11 @@ export default {
   argTypes: {
     bg: { control: 'color' },
   },
+  parameters: {
+    backgrounds: {
+      default: 'grey',
+    },
+  },
 } as Meta
 
 export const Default = Template.bind({})

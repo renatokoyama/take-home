@@ -9,6 +9,19 @@ library.add(fas)
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: { expanded: true },
+  backgrounds: {
+    default: 'white',
+    values: [
+      {
+        name: 'white',
+        value: '#fff',
+      },
+      {
+        name: 'grey',
+        value: '#838C90',
+      },
+    ],
+  },
 }
 
 export const decorators = [
