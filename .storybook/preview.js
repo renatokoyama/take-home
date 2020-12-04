@@ -9,6 +9,8 @@ library.add(fas)
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: { expanded: true },
+  showPanel: true,
+  panelPosition: 'bottom',
   backgrounds: {
     default: 'white',
     values: [

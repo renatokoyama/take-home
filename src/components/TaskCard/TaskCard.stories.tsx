@@ -25,6 +25,7 @@ export default {
   },
   argTypes: {
     bg: { control: 'color' },
+    onSave: { action: 'saved' },
   },
   parameters: {
     backgrounds: {

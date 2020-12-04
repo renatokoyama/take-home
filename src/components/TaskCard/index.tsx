@@ -12,6 +12,7 @@ import TaskPriorityMarker from '../TaskPriorityMarker'
 interface Props {
   task: Task
   showPriority?: boolean
+  onSave?: (task: Task) => void
 }
 
 const EditButton = styled(Button)`
@@ -35,9 +36,15 @@ const ActionButton = styled(Button)`
 
 export type TaskCardProps = Props & CardProps
 
-const TaskCard = ({ task, showPriority = false, ...props }: TaskCardProps) => {
+const TaskCard = ({
+  task,
+  showPriority = false,
+  onSave,
+  ...props
+}: TaskCardProps) => {
   const [focused, setFocused] = useState(false)
   const [editMode, setEditMode] = useState(false)
+  const [title, setTitle] = useState(task.title)
   return (
     <Card
       {...props}
@@ -60,6 +67,9 @@ const TaskCard = ({ task, showPriority = false, ...props }: TaskCardProps) => {
           height='400px'
           padding='20px'
           marginTop='8px'
+          onTextChange={(newTitle) => {
+            setTitle(newTitle)
+          }}
         />
       ) : (
         <Text paddingRight='30px' position='relative'>
@@ -81,6 +91,8 @@ const TaskCard = ({ task, showPriority = false, ...props }: TaskCardProps) => {
             onClick={() => {
               setEditMode(false)
               setFocused(false)
+              task.title = title
+              return onSave && onSave(task)
             }}
           >
             Save
