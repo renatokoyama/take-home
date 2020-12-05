@@ -5,6 +5,7 @@ import Box from '../Box'
 import TaskCard, { TaskCardProps } from './index'
 
 const task: Task = {
+  id: '1',
   title: 'This is a todo list with items that can be marked off',
   priority: TaskPriority.HIGH,
 }

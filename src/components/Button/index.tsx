@@ -31,7 +31,7 @@ const StyledButton = styled.button<ButtonProps>`
 const Button = ({ children, icon, iconSize, ...props }: ButtonProps) => {
   return (
     <StyledButton {...props}>
-      {icon && <FAIcon icon={icon} size={iconSize} />}
+      {icon && <FAIcon icon={icon} size={iconSize} marginRight='5px' />}
       {children}
     </StyledButton>
   )

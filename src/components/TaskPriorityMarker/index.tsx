@@ -17,7 +17,7 @@ const handleColorType = (priority?: TaskPriority): string => {
     case TaskPriority.MEDIUM:
       return theme.colors.warning
     default:
-      return theme.colors.success
+      return theme.colors.success[0]
   }
 }
 
