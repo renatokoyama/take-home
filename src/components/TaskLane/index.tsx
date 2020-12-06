@@ -3,6 +3,7 @@ import { Task, TaskStage } from 'src/interfaces/task'
 import { theme } from 'src/lib/theme'
 import { Droppable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
+import { isShorthandPropertyAssignment } from 'typescript'
 import Flex, { FlexProps } from '../Flex'
 import Heading from '../Heading'
 import DraggableTaskCard from '../DraggableTaskCard'
@@ -21,6 +22,7 @@ export default function TaskLane({
   stage,
   tasks,
   onNewTaskAdded,
+  ...props
 }: TaskLaneProps) {
   const [addingNew, setAddingNew] = useState(false)
   const onAddClicked = () => {
@@ -32,8 +34,12 @@ export default function TaskLane({
       padding='10px'
       flexDirection='column'
       borderRadius='4px'
+      flexGrow={1}
+      {...props}
     >
-      <Heading as='h5'>{stage.title}</Heading>
+      <Heading as='h5' fontWeight={600}>
+        {stage.title}
+      </Heading>
       <Droppable droppableId={stage.id}>
         {(provided) => {
           return (
@@ -53,7 +59,8 @@ export default function TaskLane({
       </Droppable>
       <Button
         padding='0'
-        marginTop='10px'
+        marginTop='16px'
+        marginLeft='8px'
         textAlign='left'
         icon='plus'
         color='grey'
