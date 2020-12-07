@@ -1,4 +1,4 @@
-import { Task } from 'src/interfaces/task'
+import { Task, TaskStage } from 'src/interfaces/task'
 import { action } from 'typesafe-actions'
 import { MovePayload } from './reducers'
 import { TaskBoardActionTypes } from './types'
@@ -11,6 +11,9 @@ export const editTask = (task: Task) =>
 
 export const moveTask = (move: MovePayload) =>
   action(TaskBoardActionTypes.MOVE_TASK, { move })
+
+export const editStage = (stage: TaskStage) =>
+  action(TaskBoardActionTypes.EDIT_STAGE, { edit: { stage } })
 
 export const isEditingTask = (isEditing: boolean) =>
   action(TaskBoardActionTypes.IS_EDITING, { isEditing })

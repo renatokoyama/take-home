@@ -5,10 +5,10 @@ import DarkOverlay from 'src/components/DarkOverlay'
 import Flex from 'src/components/Flex'
 import Heading from 'src/components/Heading'
 import TaskLane from 'src/components/TaskLane'
-import { Task } from 'src/interfaces/task'
+import { Task, TaskStage } from 'src/interfaces/task'
 import { theme } from 'src/lib/theme'
 import { ApplicationState } from 'src/state/ducks'
-import { moveTask, addTask } from 'src/state/ducks/taskboard/actions'
+import { moveTask, addTask, editStage } from 'src/state/ducks/taskboard/actions'
 import PageContainer from '../PageContainer'
 
 const TaskBoard = () => {
@@ -39,6 +39,10 @@ const TaskBoard = () => {
     dispatch(addTask(stageId, task))
   }
 
+  const onEditStage = (stage: TaskStage) => {
+    dispatch(editStage(stage))
+  }
+
   return (
     <PageContainer backgroundColor={theme.colors.greyscale[4]}>
       {state.isEditing && <DarkOverlay />}
@@ -59,6 +63,7 @@ const TaskBoard = () => {
                 marginRight='16px'
                 showPriority={index === 0}
                 onNewTaskAdded={onNewTaskAdded}
+                onSave={onEditStage}
               />
             )
           })}

@@ -1,5 +1,5 @@
 import { defineState } from 'redux-localstore'
-import { Task } from 'src/interfaces/task'
+import { Task, TaskStage } from 'src/interfaces/task'
 import { Action, PayloadAction, TypeConstant } from 'typesafe-actions'
 import { v4 as uuidv4 } from 'uuid'
 import { defaultState } from './defaultState'
@@ -14,6 +14,7 @@ interface AddPayLoad {
 
 interface EditPayLoad {
   task: Task
+  stage: TaskStage
 }
 
 export interface MovePayload {
@@ -92,6 +93,19 @@ export const taskboardReducer = (
         action.payload.move.taskId
       )
 
+      return {
+        ...state,
+        stages,
+      }
+    }
+    case TaskBoardActionTypes.EDIT_STAGE: {
+      const { stages } = state
+      const index = stages.findIndex(
+        (t) => t.id === action.payload.edit.stage.id
+      )
+      if (index >= 0) {
+        stages[index] = action.payload.edit.stage
+      }
       return {
         ...state,
         stages,
