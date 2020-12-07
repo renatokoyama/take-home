@@ -1,6 +1,5 @@
 Take Home exercise.
 
-# This project is using storybook.
 
 
 # Getting Started with Create React App
