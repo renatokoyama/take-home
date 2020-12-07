@@ -53,6 +53,12 @@ export default function TaskLane({
                 />
               ))}
               {provided.placeholder}
+              {(!tasks || !tasks.length) && (
+                <Heading as='h5' paddingY='16px'>
+                  {' '}
+                  No tasks
+                </Heading>
+              )}
             </TaskList>
           )
         }}
