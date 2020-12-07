@@ -8,35 +8,50 @@ export const defaultState: TaskBoardState = {
   tasks: [
     {
       id: '1',
-      title: 'Test 1',
-      priority: TaskPriority.HIGH,
+      title: 'This is a Todo list whith items that can be marked off',
+      priority: TaskPriority.LOW,
     },
     {
       id: '2',
-      title: 'Test 2',
-      priority: TaskPriority.HIGH,
+      title: 'You can categorize each item with a Color (Red, Yellow, Green)',
+      priority: TaskPriority.MEDIUM,
     },
     {
       id: '3',
-      title: 'Test 3',
+      title: 'Hover an item to Edit the text',
+      priority: TaskPriority.HIGH,
+    },
+    {
+      id: '4',
+      title: 'You can click and drag items up and down the list',
+      priority: TaskPriority.HIGH,
+    },
+    {
+      id: '5',
+      title: 'As well as drag items from one column to the other',
+      priority: TaskPriority.HIGH,
+    },
+    {
+      id: '6',
+      title: 'As well as rename the Columns',
       priority: TaskPriority.HIGH,
     },
   ],
   stages: [
     {
       id: 'lane-1',
-      title: 'Todo',
-      taskIds: ['1'],
+      title: 'Column 1',
+      taskIds: ['1', '2', '3'],
     },
     {
       id: 'lane-2',
-      title: 'Doing',
-      taskIds: ['2'],
+      title: 'Column 2',
+      taskIds: ['4', '5'],
     },
     {
       id: 'lane-3',
-      title: 'Finished',
-      taskIds: ['3'],
+      title: 'Column 3',
+      taskIds: ['6'],
     },
   ],
 }
