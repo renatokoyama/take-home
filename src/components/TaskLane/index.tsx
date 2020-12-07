@@ -33,7 +33,8 @@ export default function TaskLane({
       padding='10px'
       flexDirection='column'
       borderRadius='4px'
-      flexGrow={1}
+      flex={1}
+      height='fit-content'
       {...props}
     >
       <Heading as='h5' fontWeight={600}>

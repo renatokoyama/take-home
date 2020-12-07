@@ -1,35 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
+import { useSelector } from 'react-redux'
 import Flex from 'src/components/Flex'
 import Heading from 'src/components/Heading'
 import TaskLane from 'src/components/TaskLane'
-import { initialState, Task } from 'src/interfaces/task'
+import { Task } from 'src/interfaces/task'
 import { theme } from 'src/lib/theme'
+import { ApplicationState } from 'src/state/ducks'
 import PageContainer from '../PageContainer'
 
 const TaskBoard = () => {
-  const [tasks, setTasks] = useState<Task[]>(
-    Array.from(initialState.tasks).map((t) => t[1])
-  )
-  const onDragEnd = (result: DropResult) => {
-    const { destination, source, draggableId } = result
-    if (!destination) {
-      return
-    }
+  const state = useSelector(({ taskboard }: ApplicationState) => ({
+    stages: taskboard.stages,
+    tasks: taskboard.tasks,
+  }))
 
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return
-    }
-    const task = tasks.find((t) => t.id === draggableId)
-    if (task) {
-      const newTasks = Array.from(tasks)
-      newTasks.splice(source.index, 1)
-      newTasks.splice(destination.index, 0, task)
-      setTasks(newTasks)
-    }
+  const onDragEnd = (result: DropResult) => {
+    console.log(result)
   }
 
   return (
@@ -39,7 +26,19 @@ const TaskBoard = () => {
       </Heading>
       <DragDropContext onDragEnd={onDragEnd}>
         <Flex marginTop='12px'>
-          <TaskLane stage={initialState.stages[0]} tasks={tasks} />
+          {state.stages.map((stage) => {
+            const stageTasks = stage.taskIds.map(
+              (id) => state.tasks.find((task) => task.id === id) as Task
+            )
+            return (
+              <TaskLane
+                key={stage.id}
+                stage={stage}
+                tasks={stageTasks}
+                marginRight='16px'
+              />
+            )
+          })}
         </Flex>
       </DragDropContext>
     </PageContainer>
