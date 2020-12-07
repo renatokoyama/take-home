@@ -6,8 +6,8 @@ Take Home exercise.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Deployed app:
-## https://renatokoyama.github.io/take-home/
+## Deployed app:
+### https://renatokoyama.github.io/take-home/
 
 ## Available Scripts
 
