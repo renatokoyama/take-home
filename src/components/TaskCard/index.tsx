@@ -74,8 +74,15 @@ const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(
             }}
           />
         ) : (
-          <Text paddingRight='30px' position='relative'>
-            {task?.title}
+          <Box position='relative'>
+            <Text
+              paddingRight='30px'
+              position='relative'
+              dangerouslySetInnerHTML={{
+                __html: task?.title.replace(/\r\n|\r|\n/g, '<br />') || '',
+              }}
+            />
+
             {showEditButton && (
               <EditButton
                 color={theme.colors.greyscale[4]}
@@ -85,7 +92,7 @@ const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(
                 }}
               />
             )}
-          </Text>
+          </Box>
         )}
         {editMode && (
           <Actions>

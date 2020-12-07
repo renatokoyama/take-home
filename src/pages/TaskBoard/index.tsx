@@ -7,7 +7,7 @@ import TaskLane from 'src/components/TaskLane'
 import { Task } from 'src/interfaces/task'
 import { theme } from 'src/lib/theme'
 import { ApplicationState } from 'src/state/ducks'
-import { moveTask } from 'src/state/ducks/taskboard/actions'
+import { moveTask, addTask } from 'src/state/ducks/taskboard/actions'
 import PageContainer from '../PageContainer'
 
 const TaskBoard = () => {
@@ -22,7 +22,6 @@ const TaskBoard = () => {
     if (!result.destination) {
       return
     }
-    console.log(result)
     dispatch(
       moveTask({
         stageSourceId: result.source.droppableId,
@@ -34,6 +33,10 @@ const TaskBoard = () => {
     )
   }
 
+  const onNewTaskAdded = (stageId: string, task: Task) => {
+    dispatch(addTask(stageId, task))
+  }
+
   return (
     <PageContainer backgroundColor={theme.colors.greyscale[4]}>
       <Heading as='h2' color={theme.colors.white}>
@@ -41,7 +44,7 @@ const TaskBoard = () => {
       </Heading>
       <DragDropContext onDragEnd={onDragEnd}>
         <Flex marginTop='12px'>
-          {state.stages.map((stage) => {
+          {state.stages.map((stage, index) => {
             const stageTasks = stage.taskIds.map(
               (id) => state.tasks.find((task) => task.id === id) as Task
             )
@@ -51,6 +54,8 @@ const TaskBoard = () => {
                 stage={stage}
                 tasks={stageTasks}
                 marginRight='16px'
+                showPriority={index === 0}
+                onNewTaskAdded={onNewTaskAdded}
               />
             )
           })}

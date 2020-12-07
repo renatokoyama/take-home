@@ -12,6 +12,7 @@ import TaskCard from '../TaskCard'
 interface Props {
   stage: TaskStage
   tasks?: Task[]
+  showPriority?: boolean
   onNewTaskAdded?: (stageId: string, task: Task) => void
 }
 const TaskList = styled.div``
@@ -20,6 +21,7 @@ export type TaskLaneProps = FlexProps & Props
 export default function TaskLane({
   stage,
   tasks,
+  showPriority,
   onNewTaskAdded,
   ...props
 }: TaskLaneProps) {
@@ -48,6 +50,7 @@ export default function TaskLane({
                 <DraggableTaskCard
                   key={`task_${task.id}`}
                   task={task}
+                  showPriority={showPriority}
                   index={index}
                   marginTop='12px'
                 />
@@ -55,7 +58,6 @@ export default function TaskLane({
               {provided.placeholder}
               {(!tasks || !tasks.length) && (
                 <Heading as='h5' paddingY='16px'>
-                  {' '}
                   No tasks
                 </Heading>
               )}

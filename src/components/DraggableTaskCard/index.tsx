@@ -6,6 +6,7 @@ import TaskCard from '../TaskCard'
 
 interface Props {
   task: Task
+  showPriority?: boolean
   index: number
 }
 
@@ -14,6 +15,7 @@ export type DraggableTaskCardProps = Props & CardProps
 const DraggableTaskCard = ({
   index,
   task,
+  showPriority,
   ...props
 }: DraggableTaskCardProps) => {
   return (
@@ -22,6 +24,7 @@ const DraggableTaskCard = ({
         <TaskCard
           ref={provided.innerRef}
           task={task}
+          showPriority={showPriority}
           {...props}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
