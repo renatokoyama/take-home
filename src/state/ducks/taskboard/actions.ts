@@ -11,3 +11,6 @@ export const editTask = (task: Task) =>
 
 export const moveTask = (move: MovePayload) =>
   action(TaskBoardActionTypes.MOVE_TASK, { move })
+
+export const isEditingTask = (isEditing: boolean) =>
+  action(TaskBoardActionTypes.IS_EDITING, { isEditing })

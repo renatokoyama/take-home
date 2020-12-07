@@ -16,6 +16,8 @@ export default function configureStore(
 
   // Create Store
   const store = createStore(rootReducer, initialState, composeEnhancers())
-  storeSynchronize(store)
+  storeSynchronize(store, {
+    
+  })
   return store
 }

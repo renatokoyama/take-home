@@ -1,6 +1,7 @@
 import React from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { useSelector, useDispatch } from 'react-redux'
+import DarkOverlay from 'src/components/DarkOverlay'
 import Flex from 'src/components/Flex'
 import Heading from 'src/components/Heading'
 import TaskLane from 'src/components/TaskLane'
@@ -16,6 +17,7 @@ const TaskBoard = () => {
   const state = useSelector(({ taskboard }: ApplicationState) => ({
     stages: taskboard.stages,
     tasks: taskboard.tasks,
+    isEditing: taskboard.isEditing,
   }))
 
   const onDragEnd = (result: DropResult) => {
@@ -39,6 +41,7 @@ const TaskBoard = () => {
 
   return (
     <PageContainer backgroundColor={theme.colors.greyscale[4]}>
+      {state.isEditing && <DarkOverlay />}
       <Heading as='h2' color={theme.colors.white}>
         TASK MANAGEMENT BOARD
       </Heading>

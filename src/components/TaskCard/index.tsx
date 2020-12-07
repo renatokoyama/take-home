@@ -1,10 +1,10 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
 import Text from 'src/components/Text'
 import { Task } from 'src/interfaces/task'
 import { theme } from 'src/lib/theme'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { editTask } from 'src/state/ducks/taskboard/actions'
+import { editTask, isEditingTask } from 'src/state/ducks/taskboard/actions'
 import Box from '../Box'
 import Button from '../Button'
 import Card, { CardProps } from '../Card'
@@ -42,12 +42,18 @@ export type TaskCardProps = Props & CardProps
 const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(
   ({ task, showPriority = false, onSave, onCancel, ...props }, ref) => {
     const dispatch = useDispatch()
+
     const dispatchEdit = (editedTask: Task) => {
       dispatch(editTask(editedTask))
     }
     const [showEditButton, setShowEditButton] = useState(false)
     const [editMode, setEditMode] = useState(!task)
     const [title, setTitle] = useState(task?.title)
+
+    useEffect(() => {
+      dispatch(isEditingTask(editMode))
+    }, [editMode])
+
     const closeActions = () => {
       setEditMode(false)
       setShowEditButton(false)

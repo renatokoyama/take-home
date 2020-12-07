@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
+import { useDispatch } from 'react-redux'
 import { Task, TaskStage } from 'src/interfaces/task'
 import { theme } from 'src/lib/theme'
+import { isEditingTask } from 'src/state/ducks/taskboard/actions'
 import styled from 'styled-components'
 import Button from '../Button'
 import DraggableTaskCard from '../DraggableTaskCard'
@@ -26,6 +28,12 @@ export default function TaskLane({
   ...props
 }: TaskLaneProps) {
   const [addingNew, setAddingNew] = useState(false)
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(isEditingTask(addingNew))
+  }, [addingNew])
+
   const onAddClicked = () => {
     setAddingNew(true)
   }
