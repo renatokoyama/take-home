@@ -11,6 +11,18 @@ import Card, { CardProps } from '../Card'
 import Input from '../Input'
 import TaskPriorityMarker from '../TaskPriorityMarker'
 
+const CustomCard = styled(Card)<CardProps>`
+  position: relative;
+  .edit {
+    display: none;
+  }
+
+  :hover {
+    .edit {
+      display: block;
+    }
+  }
+`
 interface Props {
   task?: Task
   showPriority?: boolean
@@ -46,7 +58,6 @@ const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(
     const dispatchEdit = (editedTask: Task) => {
       dispatch(editTask(editedTask))
     }
-    const [showEditButton, setShowEditButton] = useState(false)
     const [editMode, setEditMode] = useState(!task)
     const [title, setTitle] = useState(task?.title)
 
@@ -56,21 +67,9 @@ const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(
 
     const closeActions = () => {
       setEditMode(false)
-      setShowEditButton(false)
     }
     return (
-      <Card
-        ref={ref}
-        {...props}
-        onMouseEnter={() => {
-          setShowEditButton(true)
-        }}
-        onMouseLeave={() => {
-          setShowEditButton(false)
-        }}
-        position='relative'
-        zIndex={editMode ? 10 : 0}
-      >
+      <CustomCard {...props} zIndex={editMode ? 10 : 0} ref={ref}>
         {showPriority && (
           <TaskPriorityMarker priority={task?.priority} marginBottom='6px' />
         )}
@@ -94,16 +93,14 @@ const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(
                 __html: task?.title.replace(/\r\n|\r|\n/g, '<br />') || '',
               }}
             />
-
-            {showEditButton && (
-              <EditButton
-                color={theme.colors.greyscale[4]}
-                icon='pen'
-                onClick={() => {
-                  setEditMode(true)
-                }}
-              />
-            )}
+            <EditButton
+              className='edit'
+              color={theme.colors.greyscale[4]}
+              icon='pen'
+              onClick={() => {
+                setEditMode(true)
+              }}
+            />
           </Box>
         )}
         {editMode && (
@@ -130,7 +127,7 @@ const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(
             </ActionButton>
           </Actions>
         )}
-      </Card>
+      </CustomCard>
     )
   }
 )
