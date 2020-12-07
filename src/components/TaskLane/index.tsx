@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
+import { Droppable } from 'react-beautiful-dnd'
 import { Task, TaskStage } from 'src/interfaces/task'
 import { theme } from 'src/lib/theme'
-import { Droppable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
-import { isShorthandPropertyAssignment } from 'typescript'
+import Button from '../Button'
+import DraggableTaskCard from '../DraggableTaskCard'
 import Flex, { FlexProps } from '../Flex'
 import Heading from '../Heading'
-import DraggableTaskCard from '../DraggableTaskCard'
-import Button from '../Button'
 import TaskCard from '../TaskCard'
 
 interface Props {

@@ -38,7 +38,7 @@ const TaskBoard = () => {
         TASK MANAGEMENT BOARD
       </Heading>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Flex marginTop='10px'>
+        <Flex marginTop='12px'>
           <TaskLane stage={initialState.stages[0]} tasks={tasks} />
         </Flex>
       </DragDropContext>
